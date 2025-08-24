@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:studbud2/forgotpassword_page.dart';
 import 'resetpassword_page.dart';
-
+//08-25-25
 class CheckEmailPage extends StatelessWidget {
   static const String id = 'CheckEmailPage';
   const CheckEmailPage({super.key});
