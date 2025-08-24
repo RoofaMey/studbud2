@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'passwordchanged_page.dart';
+import 'checkemail_page.dart';
 
 class ResetPasswordPage extends StatefulWidget {
+  static const String id='ResetPasswordPage';
   const ResetPasswordPage({super.key});
 
   @override
@@ -82,7 +84,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                       // Back
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, CheckEmailPage.id);
                         },
                         child: const Row(
                           children: [
@@ -174,11 +176,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                           onPressed: () {
                             if (_newPasswordController.text == _confirmPasswordController.text &&
                                 _newPasswordController.text.isNotEmpty) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const PasswordChangedPage(),
-                                ),
+                              Navigator.pushNamed(
+                                context, PasswordChangedPage.id
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(

@@ -3,6 +3,7 @@ import 'signin_page.dart';
 import 'checkemail_page.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
+  static const String id='ForgotPasswordPage';
   const ForgotPasswordPage({super.key});
 
   @override
@@ -18,7 +19,8 @@ class ForgotPasswordPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(
+                      context, SignInPage.id);
                 },
                 child: const Row(
                   mainAxisSize: MainAxisSize.min,
@@ -103,11 +105,8 @@ class ForgotPasswordPage extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const VerifyEmailPage(),
-                              ),
+                            Navigator.pushNamed(
+                              context, CheckEmailPage.id
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -141,7 +140,8 @@ class ForgotPasswordPage extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.pop(context); // or navigate to SignInPage
+                                Navigator.pushNamed(
+                                    context, SignInPage.id);
                               },
                               child: const Text(
                                 "Log in",

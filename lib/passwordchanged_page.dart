@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'signin_page.dart'; // Make sure this points to your actual sign-in screen
+import 'package:studbud2/main.dart';
+import 'signin_page.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class StudBudApp extends StatelessWidget {
+  const StudBudApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +20,7 @@ class MyApp extends StatelessWidget {
 }
 
 class PasswordChangedPage extends StatelessWidget {
+  static const String id='PasswordChangedPage';
   const PasswordChangedPage({super.key});
 
   @override
@@ -108,11 +106,8 @@ class PasswordChangedPage extends StatelessWidget {
                           shadowColor: Colors.black54,
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const SignInPage(), // ✅ Link to your actual page
-                            ),
+                          Navigator.pushNamed(
+                            context, SignInPage.id
                           );
                         },
                         child: const Text('Back to Login'),

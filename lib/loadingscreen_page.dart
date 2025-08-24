@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'home_page.dart'; // Make sure this matches your file name
 
 class LoadingScreenPage extends StatefulWidget {
+  static const String id='LoadingScreenPage';
   const LoadingScreenPage({super.key});
 
   @override
@@ -16,9 +17,8 @@ class _LoadingScreenPageState extends State<LoadingScreenPage> {
 
     // Wait for 2 seconds, then go to HomePage
     Timer(const Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+      Navigator.pushNamed(
+        context, HomePage.id
       );
     });
   }

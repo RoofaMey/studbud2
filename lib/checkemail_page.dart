@@ -1,46 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:studbud2/forgotpassword_page.dart';
 import 'resetpassword_page.dart';
 
-class VerifyEmailPage extends StatefulWidget {
-  const VerifyEmailPage({super.key});
-
-  @override
-  State<VerifyEmailPage> createState() => _VerifyEmailPageState();
-}
-
-class _VerifyEmailPageState extends State<VerifyEmailPage> {
-  int _remainingTime = 113; // 1:53 in seconds
-  late final TextEditingController _codeController;
-
-  @override
-  void initState() {
-    super.initState();
-    _codeController = TextEditingController();
-    _startTimer();
-  }
-
-  void _startTimer() {
-    Future.delayed(const Duration(seconds: 1), () {
-      if (_remainingTime > 0 && mounted) {
-        setState(() {
-          _remainingTime--;
-        });
-        _startTimer();
-      }
-    });
-  }
-
-  String get timerText {
-    final minutes = (_remainingTime ~/ 60).toString().padLeft(2, '0');
-    final seconds = (_remainingTime % 60).toString().padLeft(2, '0');
-    return "$minutes:$seconds";
-  }
-
-  @override
-  void dispose() {
-    _codeController.dispose();
-    super.dispose();
-  }
+class CheckEmailPage extends StatelessWidget {
+  static const String id = 'CheckEmailPage';
+  const CheckEmailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +12,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       backgroundColor: Colors.grey[100],
       body: Column(
         children: [
-          // Header (white with icon and menu)
+          // Header
           Container(
             height: 120,
             width: double.infinity,
@@ -102,7 +66,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       // Back
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, ForgotPasswordPage.id);
                         },
                         child: const Row(
                           children: [
@@ -130,7 +94,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                         style: TextStyle(color: Colors.grey, fontSize: 16),
                       ),
                       const Text(
-                        "ruffamaegueco@gmail.com",
+                        "ruffamaegueco@gmail.com", // hardcoded email
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -139,9 +103,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       ),
                       const SizedBox(height: 45),
 
-                      // 4 Digit Code Boxes
+                      // 4 Digit Code Boxes (UI only, no controller)
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Better spacing
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: List.generate(4, (index) {
                           return SizedBox(
                             width: 60,
@@ -154,33 +118,25 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                                 counterText: "",
                                 filled: true,
                                 fillColor: Colors.grey[300],
-                                contentPadding: const EdgeInsets.symmetric(vertical: 16), // adjust height
+                                contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                   borderSide: BorderSide.none,
                                 ),
                               ),
-                              onChanged: (value) {
-                                if (value.isNotEmpty && index < 3) {
-                                  FocusScope.of(context).nextFocus();
-                                }
-                              },
                             ),
                           );
                         }),
                       ),
                       const SizedBox(height: 35),
 
-
                       // Verify Button
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const ResetPasswordPage()),
-                            );
+                            Navigator.pushNamed(context, ResetPasswordPage.id);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.black,
@@ -200,12 +156,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       ),
                       const SizedBox(height: 35),
 
-
-                        // Resend code with timer
+                      // Resend code with static timer
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             "Send code again ",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -213,8 +168,8 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                             ),
                           ),
                           Text(
-                            timerText,
-                            style: const TextStyle(color: Colors.grey, fontSize: 15),
+                            "01:53", // hardcoded timer
+                            style: TextStyle(color: Colors.grey, fontSize: 15),
                           ),
                         ],
                       ),

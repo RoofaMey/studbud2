@@ -4,6 +4,7 @@ import 'forgotpassword_page.dart';
 import 'loadingscreen_page.dart';
 
 class SignInPage extends StatefulWidget {
+  static const String id='SignInPage';
   const SignInPage({super.key});
 
   @override
@@ -129,12 +130,8 @@ class _SignInPageState extends State<SignInPage> {
                           alignment: Alignment.centerRight,
                           child: GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const ForgotPasswordPage(),
-                                ),
-                              );
+                              Navigator.pushNamed(
+                                context, ForgotPasswordPage.id);
                             },
                             child: const Text(
                               "Forgot Password?",
@@ -145,7 +142,6 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                         ),
-
                         const SizedBox(height: 25),
 
                         // Login Button
@@ -153,9 +149,8 @@ class _SignInPageState extends State<SignInPage> {
                           width: double.infinity,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const LoadingScreenPage()),
+                              Navigator.pushNamed(
+                                context, LoadingScreenPage.id
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -171,7 +166,6 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                           ),
                         ),
-
 
                         const SizedBox(height: 30),
                         const Center(
@@ -240,9 +234,8 @@ class _SignInPageState extends State<SignInPage> {
                             ),
                             GestureDetector(
                               onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => const CreateAccountPage()),
+                                Navigator.pushNamed(
+                                  context, CreateAccountPage.id
                                 );
                               },
                               child: const Text(

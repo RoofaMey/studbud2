@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:studbud2/checkemail_page.dart';
+import 'package:studbud2/signin_page.dart';
 import 'verifycode_page.dart';
 
 class CreateAccountPage extends StatefulWidget {
+  static const String id='CreateAccountPage';
   const CreateAccountPage({super.key});
 
   @override
@@ -136,7 +139,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           ),
                         ],
                       ),
-
                       const SizedBox(height: 20),
 
                       // Create Button
@@ -145,11 +147,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                         child: ElevatedButton(
                           onPressed: _acceptedTerms
                               ? () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const VerifyCodePage(),
-                              ),
+                            Navigator.pushNamed(
+                              context, CheckEmailPage.id
                             );
                           }
                               : null,
@@ -180,7 +179,9 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.pop(context);
+                              Navigator.pushNamed(
+                                  context, SignInPage.id
+                              );
                             },
                             child: const Text(
                               "Log in",

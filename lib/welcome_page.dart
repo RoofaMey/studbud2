@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'signin_page.dart';
 
 class WelcomePage extends StatelessWidget {
+  static const String id='WelcomePage';
   const WelcomePage({super.key});
 
   @override
@@ -76,11 +77,8 @@ class WelcomePage extends StatelessWidget {
                     const SizedBox(height: 40),
                     ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SignInPage(),
-                          ),
+                        Navigator.pushNamed(
+                          context, SignInPage.id
                         );
                       },
                       style: ElevatedButton.styleFrom(

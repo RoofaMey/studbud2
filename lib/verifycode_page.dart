@@ -1,8 +1,11 @@
 // verifycode_page.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:studbud2/create_account_page.dart';
 import 'signin_page.dart'; // Make sure this path is correct
 
 class VerifyCodePage extends StatefulWidget {
+  static const String id='VerifyCodePage';
   const VerifyCodePage({super.key});
 
   @override
@@ -31,9 +34,8 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     // Wait 2 seconds, then navigate to SignInPage
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const SignInPage()),
+        Navigator.pushNamed(
+          context, SignInPage.id
         );
       }
     });
@@ -99,7 +101,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                       // Back
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.pushNamed(context, CreateAccountPage.id);
                         },
                         child: const Row(
                           children: [
