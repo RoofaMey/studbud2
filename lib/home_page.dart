@@ -9,7 +9,8 @@ void main() {
 }
 
 class HomePage extends StatelessWidget {
- static const String id ='HomePage';
+  static const String id = 'HomePage';
+
   const HomePage({super.key});
 
   @override
@@ -37,10 +38,12 @@ class _HomepageScreenState extends State<HomepageScreen> {
   int selectedIndex = 0;
 
   final List<Widget> pages = [
+    // 🏠 HOME PAGE CONTENT
     SingleChildScrollView(
       child: Column(
         children: [
           const SizedBox(height: 20),
+
           // Avatar & Greeting
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -68,10 +71,12 @@ class _HomepageScreenState extends State<HomepageScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+
+          const SizedBox(height: 30),
+
           // Weather & Location
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 35),
             child: Row(
               children: [
                 Expanded(
@@ -90,7 +95,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 5),
+                const SizedBox(width: 10),
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.all(15),
@@ -111,7 +116,9 @@ class _HomepageScreenState extends State<HomepageScreen> {
               ],
             ),
           ),
+
           const SizedBox(height: 20),
+
           // Action Buttons & Quote
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -146,7 +153,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontStyle: FontStyle.italic),
                         ),
-                        Icon(Icons.pets, size: 40),
+                        Icon(Icons.pets, size: 50),
                         Text(
                           "“Hard work pays off so do your best!!”",
                           textAlign: TextAlign.center,
@@ -159,7 +166,9 @@ class _HomepageScreenState extends State<HomepageScreen> {
               ],
             ),
           ),
+
           const SizedBox(height: 20),
+
           // Footer Message
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
@@ -171,6 +180,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
         ],
       ),
     ),
+
     const DiaryPage(),
     const WeatherPage(),
     const StudyPlannerPage(),
@@ -180,7 +190,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // AppBar
+      // ✅ Custom AppBar
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text(
@@ -205,27 +215,39 @@ class _HomepageScreenState extends State<HomepageScreen> {
         ),
       ),
 
-      // Body displays the selected page
+      // ✅ Body displays selected page
       body: pages[selectedIndex],
 
-      // ✅ Custom circular Bottom Nav Bar
+      // ✅ New Floating Rounded Navbar (Weather in the middle)
       bottomNavigationBar: Container(
-        color: Colors.black,
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        height: 80,
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(40),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.4),
+              blurRadius: 12,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _navItem(Icons.home, 0),
-            _navItem(Icons.note, 1),
-            _navItem(Icons.cloud, 2),
-            _navItem(Icons.list, 3),
-            _navItem(Icons.person, 4),
+            _navItem(Icons.home, 0),       // Home
+            _navItem(Icons.note, 1),       // Diary
+            _navItem(Icons.cloud, 2),      // Weather 🌤️ (Middle)
+            _navItem(Icons.list, 3),       // Study Planner
+            _navItem(Icons.person, 4),     // Profile
           ],
         ),
       ),
     );
   }
 
+  // ✅ Normal Nav Item
   Widget _navItem(IconData icon, int index) {
     bool isSelected = selectedIndex == index;
     return GestureDetector(
@@ -234,21 +256,24 @@ class _HomepageScreenState extends State<HomepageScreen> {
           selectedIndex = index;
         });
       },
-      child: Container(
-        padding: const EdgeInsets.all(12),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeInOut,
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: isSelected ? Colors.white : Colors.grey[400],
+          color: isSelected ? Colors.white : Colors.transparent,
           shape: BoxShape.circle,
         ),
         child: Icon(
           icon,
-          size: 24,
+          size: isSelected ? 32 : 26,
           color: isSelected ? Colors.black : Colors.white,
         ),
       ),
     );
   }
 
+  // ✅ Black Buttons
   static Widget _blackButton(String label, IconData icon) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
