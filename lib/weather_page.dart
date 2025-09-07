@@ -24,12 +24,23 @@ class WeatherPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.15),
+                          spreadRadius: 1,
+                          blurRadius: 6,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Row(
                       children: const [
                         Icon(Icons.wb_sunny, size: 18),
                         SizedBox(width: 6),
-                        Text('Sunny Day', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        Text(
+                          'Sunny Day',
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
                       ],
                     ),
                   ),
@@ -38,12 +49,23 @@ class WeatherPage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.15),
+                          spreadRadius: 1,
+                          blurRadius: 6,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
                     ),
                     child: Row(
                       children: const [
                         Icon(Icons.location_on, size: 18),
                         SizedBox(width: 6),
-                        Text('Capas, Tarlac', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                        Text(
+                          'Capas, Tarlac',
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
                       ],
                     ),
                   ),
@@ -58,10 +80,21 @@ class WeatherPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
                 ),
                 child: Column(
                   children: [
-                    const Text('22 °C', style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold)),
+                    const Text(
+                      '22 °C',
+                      style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+                    ),
                     const SizedBox(height: 2),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -83,6 +116,14 @@ class WeatherPage extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.25),
+                      spreadRadius: 1,
+                      blurRadius: 6,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
                 child: Row(
                   children: const [
@@ -101,7 +142,10 @@ class WeatherPage extends StatelessWidget {
               const SizedBox(height: 20),
 
               // Hourly Forecast
-              const Text('Today', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              const Text(
+                'Today',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 12),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -128,6 +172,14 @@ class WeatherPage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.15),
+            spreadRadius: 1,
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: Column(
         children: [

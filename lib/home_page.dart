@@ -37,160 +37,232 @@ class HomepageScreen extends StatefulWidget {
 class _HomepageScreenState extends State<HomepageScreen> {
   int selectedIndex = 0;
 
-  final List<Widget> pages = [
-    // 🏠 HOME PAGE CONTENT
-    SingleChildScrollView(
-      child: Column(
-        children: [
-          const SizedBox(height: 20),
+  @override
+  Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      // 🏠 HOME PAGE CONTENT
+      SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
 
-          // Avatar & Greeting
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
+            // Avatar & Greeting with Shadow
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.3),
+                      spreadRadius: 2,
+                      blurRadius: 8,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                padding: const EdgeInsets.all(30),
+                child: Row(
+                  children: const [
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 40,
+                      child: Icon(Icons.pets, size: 40, color: Colors.black),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Text(
+                        "Hello, Ruffa! Ready to study or get ready for school?",
+                        style: TextStyle(color: Colors.white, fontSize: 22),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              padding: const EdgeInsets.all(50),
+            ),
+
+            const SizedBox(height: 30),
+
+            // Weather & Location (Clickable) with Shadow
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Row(
-                children: const [
-                  CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 30,
-                    child: Icon(Icons.pets, size: 40, color: Colors.black),
-                  ),
-                  SizedBox(width: 12),
+                children: [
                   Expanded(
-                    child: Text(
-                      "Hello, Ruffa! Ready to study or get ready for school?",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = 2; // WeatherPage
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(Icons.wb_sunny_outlined),
+                            SizedBox(width: 12),
+                            Text("Sunny Day",
+                                style: TextStyle(fontSize: 16)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = 2; // WeatherPage
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: const Row(
+                          children: [
+                            Icon(Icons.location_on, color: Colors.white),
+                            SizedBox(width: 12),
+                            Text("Capas, Tarlac",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16)),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
 
-          const SizedBox(height: 30),
+            const SizedBox(height: 28),
 
-          // Weather & Location
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 35),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(Icons.wb_sunny_outlined),
-                        SizedBox(width: 8),
-                        Text("Sunny Day"),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(Icons.location_on, color: Colors.white),
-                        SizedBox(width: 8),
-                        Text("Capas, Tarlac",
-                            style: TextStyle(color: Colors.white)),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          // Action Buttons & Quote
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                    children: [
-                      _blackButton("Plan your studies", Icons.edit_calendar),
-                      _blackButton("Check weather", Icons.cloud),
-                      _blackButton("Write your thoughts", Icons.create),
-                      _blackButton("11:11 AM | do best", Icons.access_time),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    padding: const EdgeInsets.all(10),
+            // Action Buttons & Quote with Shadow
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    flex: 3,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        Text(
-                          "“Not to brag but to inspire.”",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontStyle: FontStyle.italic),
-                        ),
-                        Icon(Icons.pets, size: 50),
-                        Text(
-                          "“Hard work pays off so do your best!!”",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
+                      children: [
+                        _blackButton("Plan your studies", Icons.edit_calendar, 3),
+                        _blackButton("Check weather", Icons.cloud, 2),
+                        _blackButton("Write your thoughts", Icons.create, 1),
+                        _blackButton("11:11 AM | do best", Icons.access_time, 0),
                       ],
                     ),
                   ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      height: 220,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.25),
+                            spreadRadius: 2,
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const [
+                          Text(
+                            "“Not to brag but to inspire.”",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              fontSize: 20,
+                            ),
+                          ),
+                          Icon(Icons.pets, size: 50),
+                          Text(
+                            "“Hard work pays off so do your best!!”",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 25),
+
+            // Footer Message (framed) with Shadow
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.2),
+                      spreadRadius: 2,
+                      blurRadius: 6,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
                 ),
-              ],
+                child: const Text(
+                  "Small steps every day lead to big changes.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                ),
+              ),
             ),
-          ),
-
-          const SizedBox(height: 20),
-
-          // Footer Message
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              "Small steps every day lead to big changes.",
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
 
-    const DiaryPage(),
-    const WeatherPage(),
-    const StudyPlannerPage(),
-    const ProfilePage(),
-  ];
+      const DiaryPage(),
+      const WeatherPage(),
+      const StudyPlannerPage(),
+      const ProfilePage(),
+    ];
 
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      // ✅ Custom AppBar
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: const Text(
@@ -214,11 +286,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
           ),
         ),
       ),
-
-      // ✅ Body displays selected page
       body: pages[selectedIndex],
-
-      // ✅ New Floating Rounded Navbar (Weather in the middle)
       bottomNavigationBar: Container(
         height: 80,
         margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
@@ -236,18 +304,18 @@ class _HomepageScreenState extends State<HomepageScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _navItem(Icons.home, 0),       // Home
-            _navItem(Icons.note, 1),       // Diary
-            _navItem(Icons.cloud, 2),      // Weather 🌤️ (Middle)
-            _navItem(Icons.list, 3),       // Study Planner
-            _navItem(Icons.person, 4),     // Profile
+            _navItem(Icons.home, 0),
+            _navItem(Icons.note, 1),
+            _navItem(Icons.cloud, 2),
+            _navItem(Icons.list, 3),
+            _navItem(Icons.person, 4),
           ],
         ),
       ),
     );
   }
 
-  // ✅ Normal Nav Item
+  // Nav Item
   Widget _navItem(IconData icon, int index) {
     bool isSelected = selectedIndex == index;
     return GestureDetector(
@@ -273,25 +341,41 @@ class _HomepageScreenState extends State<HomepageScreen> {
     );
   }
 
-  // ✅ Black Buttons
-  static Widget _blackButton(String label, IconData icon) {
+  // Black Buttons
+  Widget _blackButton(String label, IconData icon, int targetIndex) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          children: [
-            Icon(icon, color: Colors.white),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(label, style: const TextStyle(color: Colors.white)),
-            ),
-          ],
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedIndex = targetIndex;
+          });
+        },
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.25),
+                spreadRadius: 1,
+                blurRadius: 6,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Row(
+            children: [
+              Icon(icon, color: Colors.white),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(label,
+                    style: const TextStyle(color: Colors.white, fontSize: 16)),
+              ),
+            ],
+          ),
         ),
       ),
     );
